@@ -1,0 +1,54 @@
+## Perturbed Accelerated Gradient Descent: ------------------------------------
+### Sub-step: Negative Curvature Exploitation
+PAGD = function(params, gd, obj_f){
+  ## Parameters
+  x = params[[1]] ## current iterate
+  eta = params[[2]] ## stepsize
+  theta = params[[3]] ## momentum parameter
+  epsilon = params[[4]] ## epsilon for first-order stationary points
+  radius = params[[5]] ## radius of open ball
+  count = params[[9]] ## count = c(0,1,1,0,0,0..) is the state of perturbation
+  t = params[[10]] ## the script T in paper that controls the perturbation
+  
+  ## unused parameters
+  zeta = params[[11]] ## iteration gradient, initial 0
+  z_new = params[[12]] ## initial x
+  x_0 = params[[13]] ## x tilde, initial x
+  iter = params[[14]] ## number of iterations, initial 0
+  t_sub = params[[15]] ## sub-iterations' upper bound, you decide
+  eta_sub = params[[16]] ## sub-iterations' updating parameter, you decide
+  
+  ## Algorithms
+  if (norm(gd(x), type = "2") <= epsilon){
+    if (length(count) < t){
+      if (sum(count) == 0){
+        x = x + uniball(radius)
+        count = c(count, 1)
+      } else {
+        count = c(count, 0)
+      }
+    } else {
+      if (sum(count[(length(count) - t + 1): length(count)] == 0)){
+        x = x + uniball(radius)
+        count = c(count, 1)
+      } else {
+        count = c(count, 0)
+      }
+    }
+  }
+  v = params[[6]]
+  y = x + (1 - theta) * v
+  x_new = y - eta * gd(y)
+  v_new = x_new - x
+  y_new = x_new + (1 - theta) * v_new
+  gamma = params[[7]]
+  s = params[[8]]
+  if (obj_f(x_new) <= obj_f(y_new) + sum(gd(y_new) * (x_new - y_new))
+      - gamma / 2 * norm(x_new - y_new, type = "2")^2){
+    x_new = c(NCE(x_new, v_new, s, obj_f)[1], NCE(x_new, v_new, s, obj_f)[2])
+    v_new = c(NCE(x_new, v_new, s, obj_f)[3], NCE(x_new, v_new, s, obj_f)[4])
+  }
+  
+  return(list(x_new, eta, theta, epsilon, radius, v_new, gamma, s, count, t, 
+              zeta, z_new, x_0, iter, t_sub, eta_sub))
+}
