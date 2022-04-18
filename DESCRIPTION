@@ -20,5 +20,5 @@ Imports:
 biocViews: 
 URL: https://github.com/HongfanChen/PertGD
 BugReports: https://github.com/HongfanChen/PertGD/issues
-RoxygenNote: 7.1.1
+RoxygenNote: 7.1.2
 Roxygen: list(markdown = TRUE)

@@ -44,7 +44,8 @@ library(PertGD)
 For documentation pages:
 
 ``` r
-?train_2d
+?train_gd
+?PertGD
 ```
 
 ### Quick example:
@@ -67,11 +68,11 @@ params1 = list(x = c(0.6806,0), eta = 0.1, theta = 0.5, epsilon = 1e-2,
                t = 10, zeta = 0, z = c(1,1), x_0 = c(1,1), iter = 0, t_sub = 5,
                eta_sub = 0.05)
 ## get results: ---------------------------------------------------------------
-res_gd = train_2d(vanilla_gd, params1, gd, obj_f, 20)
-res_agd = train_2d(AGD, params1, gd, obj_f, 20)
-res_pagd = train_2d(PAGD, params1, gd, obj_f, 20)
-res_fpgd = train_2d(FPGD, params1, gd, obj_f, 20)
-res_fpagd = train_2d(FPAGD, params1, gd, obj_f, 20)
+res_gd = train_gd(vanilla_gd, params1, gd, obj_f, 20)
+res_agd = train_gd(AGD, params1, gd, obj_f, 20)
+res_pagd = train_gd(PAGD, params1, gd, obj_f, 20)
+res_fpgd = train_gd(FPGD, params1, gd, obj_f, 20)
+res_fpagd = train_gd(FPAGD, params1, gd, obj_f, 20)
 ```
 
 ### Current Suggested Citation
