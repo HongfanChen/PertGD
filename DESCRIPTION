@@ -1,0 +1,24 @@
+Package: PertGD
+Version: 1.0.0
+Title: Escaping the saddle points by perturbation
+Type: Package
+Description: We implement four gradient-based methods which can escape from saddle point quickly.
+     They are "Perturbed Gradient Descent", "Perturbed Accelerated Gradient Descent",
+     "Faster Perturbed Gradient Descent", and "Faster Perturbed Accelerated Gradient Descent". 
+     These methods are ensured to converge to second order stationary points in some steps related
+     with problem's dimension and the accuracy we want, with probability 1.
+Authors@R: c(
+    person(given = "Hongfan", family = "Chen", role = c("aut", "cre"), email = "chenhf@umich.edu"),
+    person(given = "Tunan", family = "Wang", role = c("aut"), email = "wtunan@umich.edu"))
+License: GPL-2
+Encoding: UTF-8
+LazyData: true
+Biarch: true
+Depends: 
+    R (>= 3.5.0)
+Imports: 
+biocViews: 
+URL: https://github.com/HongfanChen/PertGD
+BugReports: https://github.com/HongfanChen/PertGD/issues
+RoxygenNote: 7.1.1
+Roxygen: list(markdown = TRUE)

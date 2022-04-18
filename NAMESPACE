@@ -1,0 +1,8 @@
+
+export(train_2d)
+export(PAGD)
+export(PGD)
+export(vanilla_gd)
+export(FPGD)
+export(FPAGD)
+export(AGD)
